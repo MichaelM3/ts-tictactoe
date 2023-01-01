@@ -1,9 +1,24 @@
+import { FC } from 'react'
+import GameTile from './GameTile'
 
-
-const GameBoard = () => {
+const GameBoard: FC = () => {
     return (
         <div className="board">
-           inside gameboard 
+            <div className='row'>
+                <GameTile />
+                <GameTile />
+                <GameTile />
+            </div>
+            <div className='row'>
+                <GameTile />
+                <GameTile />
+                <GameTile />
+            </div>
+            <div className='row'>
+                <GameTile />
+                <GameTile />
+                <GameTile />
+            </div>
         </div>
     )
 }
