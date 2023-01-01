@@ -7,11 +7,27 @@ body {
 
 .board {
     display: flex;
+    justify-content: space-evenly;
+    background-color: cyan; 
     width: 750px;
     height: 750px;
     border: 2px solid white;
 }
 
-.row {
-    border: 1px solid white;
+.tile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    font-size: 150px;
+    width: 200px;
+    height: 200px;
+    margin-top: 2rem;
+}
+
+.tile:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    background-color: slategray;
 }
