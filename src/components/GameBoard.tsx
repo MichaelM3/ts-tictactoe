@@ -10,16 +10,12 @@ const GameBoard: FC<IProps> = ({ turn, setTurn }) => {
 
     const placeShape = (e: MouseEvent) => {
         const target = e.target as HTMLDivElement
-        if (checkValidMove(target.innerText)) {
+        if (target.innerText === "") {
             const pos: number = +target.id as number
             setTiles([...tiles.slice(0, pos), turn, ...tiles.slice(pos+1, 9)])
             target.innerText = turn
             turn === "X" ? setTurn("O") : setTurn("X")
         }
-    }
-
-    const checkValidMove = (pos: string): boolean => {
-        return pos === "" ? true : false
     }
 
     return (
