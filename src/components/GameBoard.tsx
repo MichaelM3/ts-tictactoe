@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from 'react'
+import { FC, MouseEvent, useEffect, useState } from 'react'
 
 interface IProps {
     turn: string;
@@ -15,12 +15,15 @@ const GameBoard: FC<IProps> = ({ turn, setTurn, setWinner }) => {
             const pos: number = +target.id as number
             setTiles([...tiles.slice(0, pos), turn, ...tiles.slice(pos + 1, 9)])
             target.innerText = turn
-            if (checkWinner(turn)) setWinner(turn)
             turn === "X" ? setTurn("O") : setTurn("X")
         }
     }
 
-    const checkWinner = (shape: string): boolean => {
+    useEffect(() => {
+        if (checkWinner()) setWinner(turn)
+    }, [tiles])
+
+    const checkWinner = (): boolean => {
         if (
             (tiles[0] === turn && tiles[0] === tiles[1] && tiles[1] === tiles[2]) || // Checks first row
             (tiles[3] === turn && tiles[3] === tiles[4] && tiles[4] === tiles[5]) || // Checks second row
@@ -30,7 +33,7 @@ const GameBoard: FC<IProps> = ({ turn, setTurn, setWinner }) => {
             (tiles[2] === turn && tiles[2] === tiles[5] && tiles[5] === tiles[8]) || // Checks third column
             (tiles[0] === turn && tiles[0] === tiles[4] && tiles[4] === tiles[8]) || // Checks first diagnal
             (tiles[2] === turn && tiles[2] === tiles[4] && tiles[4] === tiles[6]) // Checks second diagnal
-        ) return true   
+        ) return true
         return false
     }
 
